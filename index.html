@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Thoughts</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <!--<link rel="manifest" href="/manifest.webmanifest">-->
+  </head>
+
+  <body>
+    <div id="conSolo"></div>
+    <div class="paintGridContainer">
+      <canvas id="testCanvas" width="640" height="640"  alt="your browser does not support the HTML5 canvas tag.  Seriously." >
+      </canvas>
+      <div id="rightSide">
+        <div id="controlMenu" class="paintGridContainer">
+          <div id="theChangingFirst">
+            <button type="button" id="colorGradOptions">Colors and Gradients</button>
+            <button type="button" id="shadowOptions">Shadows</button>
+            <button type="button" id="lineOptions">Line Info</button>
+            <button type="button" id="stampOptions">Stamp</button>
+            <button type="button" id="textOptions">Text</button>
+            <button type="button" id="otherOptions">Other</button>
+            <button type="button" id="paintGameOptions">Paint Game</button>
+
+            <fieldset id="lineControl">
+              <h2>Line</h2>
+              <h3>Line Cap:</h3>
+              <label for="defaultLineCap">Default</label>
+              <input type="radio" name="lineCap" id="defaultLineCap" value="butt" checked><br>
+              <label for="roundLineCap">Round</label>
+              <input type="radio" name="lineCap" id="roundLineCap" value="round"><br>
+              <label for="squareLineCap">Square</label>
+              <input type="radio" name="lineCap" id="squareLineCap" value="square"><br><br>
+
+              <h3>Line Join:</h3>
+              <label for="bevelJoin">Bevel</label>
+              <input type="radio" name="lineJoin" id="bevelJoin" value="bevel" checked><br>
+              <label for="roundJoin">Round</label>
+              <input type="radio" name="lineJoin" id="roundJoin" value="round"><br>
+              <label for="miterJoin">Miter</label>
+              <input type="radio" name="lineJoin" id="miterJoin" value="miter"><br><br>
+
+              <label for="lineWidthInput" value="1">Line Width:</label>
+              <input type="text" id="lineWidthInput"><br>
+              <label for="miterLimitInput" value="180">Miter Limit:</label>
+              <input type="text" id="miterLimitInput"><br>
+            </fieldset>
+
+        
+            <fieldset id="textControl">
+              <h2>Text</h2>
+              <label for="fillTextBoolean">Fill Text</label>
+              <input type="checkbox" id="fillTextBoolean"><br>
+              <label for="fontInput">Font:</label>
+              <input type="text" id="fontInput" value="Times New Roman"><br>
+              <label for="fontSize">Font Size:</label>
+              <input type="text" id="fontSize" value="12"><br>
+              <label for="fontWeight">Font Weight:</label>
+              <select id="fontWeight">
+                <option value="100">100</option>
+                <option value="200">200</option>
+                <option value="300">300</option>
+                <option value="400">400</option>
+                <option value="500">500</option>
+                <option value="600">600</option>
+                <option value="700">700</option>
+                <option value="800">800</option>
+                <option value="900">900</option>
+              </select><br><br>
+              <label for="fontVarient">Font Varient:</label>
+              <select id="fontVarient">
+                <option value="normal">normal</option>
+                <option value="small-caps">small caps</option>
+              </select><br><br>
+
+              <label for="fontStyle">Font Style:</label>
+              <select id="fontStyle">
+                <option value="normal">normal</option>
+                <option value="italic">italic</option>
+                <option value="oblique">oblique</option>
+              </select><br>
+
+              <label for="textAlign">Text Alignment:</label>
+              <select id="textAlign">
+                <option value="left">left</option>
+                <option value="center">center</option>
+                <option value="right">right</option>
+              </select><br>
+            </fieldset>
+
+            <fieldset id="shadowControl">
+              <h2>Shadows</h2>
+              <label for="drawShadowBoolean">Draw Shadow</label>
+              <input type="checkbox" id="drawShadowBoolean">
+              <label for="shadowColorInput">Shadow Color:</label>
+              <input type="text" id="shadowColorInput" name="otherColorInputs"><br>
+              <label for="shadowBlurInput">Blur:</label>
+              <input type="text" id="shadowBlurInput"><br>
+              <label for="shadowOffsetXInput">Shadow OffsetX:</label>
+              <input type="text" id="shadowOffsetXInput"><br>
+              <label for="shadowOffsetYInput">Shadow OffsetY:</label>
+              <input type="text" id="shadowOffsetYInput"><br>
+            </fieldset>
+
+            <fieldset id="otherControl">
+              <h2>Other</h2>
+              <label for="invertBool">Invert</label>
+              <input type="checkbox" id="invertBool">
+              <label for="drawAngle">Angle:</label>
+              <input type="text" id="drawAngle" value="0"><br>
+              <label for="alpha">Alpha:</label>
+              <input type="text" id="alpha" value="1"><br>
+              <label for="drawScaleX">DrawScale X:</label>
+              <input type="text" id="drawScaleX" value="1"><br>
+              <label for="drawScaleY">DrawScale Y:</label>
+              <input type="text" id="drawScaleY" value="1"><br>
+            </fieldset>
+
+            <fieldset id="stampControl">
+              <h2>Stamp Details</h2>
+              <label for="stampWidth">Width</label>
+              <input type="text" id="stampWidth" value="100"><br>
+              <label for="stampHeight">Height</label>
+              <input type="text" id="stampHeight" value="100"><br>
+
+              <select id="stampAction">
+                <option value="circle">Circle</option>
+                <option value="rectangle" selected>Rectangle</option>
+              </select><br><br>
+
+              <label for="clipBool">Clip</label>
+              <input type="checkbox" id="clipBool">
+
+              <label for="clipStartX">Clip Start-X</label>
+              <input type="text" id="clipStartX" value="0"><br>
+              <label for="clipStartY">Clip Start-Y</label>
+              <input type="text" id="clipStartY" value="0"><br>
+
+              <label for="clipEndX">Clip End-X</label>
+              <input type="text" id="clipEndX" value="100"><br>
+              <label for="clipEndY">Clip End-Y</label>
+              <input type="text" id="clipEndY" value="100"><br>
+            </fieldset>
+
+            <fieldset id="paintGameControl">
+              <h2>Paint Game</h2>
+              <label for="gridWidth">Width</label>
+              <input type="text" id="gridWidth" value="16"><br>
+              <label for="gridHeight">Height</label>
+              <input type="text" id="gridHeight" value="16"><br>
+
+              <label for="blockColor">Color: </label>
+              <select id="blockColor">
+                <option value="aqua">aqua</option>
+                <option value="black" selected>black</option>
+                <option value="blue">blue</option>
+                <option value="fuchsia" selected>fuschia</option>
+                <option value="gray">gray</option>
+                <option value="green" selected>green</option>
+                <option value="lime">lime</option>
+                <option value="maroon" selected>maroon</option>
+                <option value="navy">navy</option>
+                <option value="olive" selected>olive</option>
+                <option value="purple">purple</option>
+                <option value="red" selected>red</option>
+                <option value="silver">silver</option>
+                <option value="teal" selected>teal</option>
+                <option value="white">white</option>
+                <option value="yellow" selected>yellow</option>
+              </select>
+
+              <div id="gridCost"></div><br><br>
+              <div id="gridFunds">Grid Funds: 1000</div><br><br>
+
+              <fieldset id="RGB_Game">
+                <div id="RGB_Console"></div>
+                <div id="RGB_Health">Health: 100</div>
+                <div id="RGB_Mana">Mana: 0</div><br><br>
+
+                <label for="manaAbility">Mana Ability: </label>
+                <select id="manaAbility">
+                  <option value="purgeWeakness" selected>Purge Weakness</option>
+                  <option value="deleteSquare">Delete Square</option>
+                  <option value="healCharacter">Heal Character</option>
+                </select><br><br>
+
+                <label for="twentyBool">Leave 20% of strength color</label>
+                <input type="checkbox" id="twentyBool"><br><br>
+
+                <label for="weaknessColor">Weakness Color: </label>
+                <select id="weaknessColor">
+                  <option value="red" selected>red</option>
+                  <option value="green">green</option>
+                  <option value="blue">blue</option>
+                </select><br><br> 
+
+                <label for="neutralColor">Neutral Color: </label>
+                <select id="neutralColor">
+                  <option value="red">red</option>
+                  <option value="green" selected>green</option>
+                  <option value="blue">blue</option>
+                </select><br><br>
+
+                <label for="strengthColor">Strength Color: </label>
+                <select id="strengthColor">
+                  <option value="red">red</option>
+                  <option value="green">green</option>
+                  <option value="blue" selected>blue</option>
+                </select><br><br>
+
+                <button type="button" id="RGB_StartGame">Start Game</button>
+                <button type="button" id="RGB_EndGame">End Game</button>
+              </fieldset>             
+            </fieldset>
+            <div id="colorControl">
+              <div id="colorSection">
+                <div id="easyColorMaker" class="paintGridContainer">
+                  <canvas id="colorCanvas" width="64" height="64" alt="your browser isn't showing the canvas" style="background-color: white"></canvas>
+
+                  <div id="colorController">
+                    <label for="redInput" id="redInputLabel" style="color: red">Red</label>
+                    <input type="range" name="colorInputRanges" id="redInput" min="0" max="255">
+                    <nobr id="colorOutputDisplay0">000</nobr><br>
+
+                    <label for="greenInput" id="greenInputLabel" style="color: green">Green</label>
+                    <input type="range" name="colorInputRanges" id="greenInput" min="0" max="255">
+                    <nobr id="colorOutputDisplay1">000</nobr><br>
+
+                    <label for="blueInput" id="blueInputLabel" style="color: blue">Blue</label>
+                    <input type="range" name="colorInputRanges" id="blueInput" min="0" max="255">
+                    <nobr id="colorOutputDisplay2">000</nobr><br>
+                  </div>
+                </div><br>
+
+                <label for="colorInput0" id="colorLabel0">color0:</label>
+                <input name="colors" type="text" id="colorInput0">
+                <label for="colorInput1" id="colorLabel1">color1:</label>
+                <input name="colors" type="text" id="colorInput1">
+                <label for="colorInput2" id="colorLabel2">color2:</label>
+                <input name="colors" type="text" id="colorInput2">
+                <label for="colorInput3" id="colorLabel3">color3:</label>
+                <input name="colors" type="text" id="colorInput3">
+              </div>
+              <button type="button" id="addColor">Add Color</button>
+              <button type="button" id="removeColor">Remove Color</button><br>
+
+              <label for="fillStatus0">Outline</label>
+              <input type="radio" name="fillStatus" id="fillStatus0" value="outline" checked><br>
+              <label for="fillStatus1">Fill</label>
+              <input type="radio" name="fillStatus" id="fillStatus1" value="fill"><br>
+              <label for="fillStatus2">Both</label>
+              <input type="radio" name="fillStatus" id="fillStatus2" value="both"><br>
+            </div>
+
+            <div id="gradientControl" class="invisible">
+              <div class="paintGridContainer">
+
+                <div id="gradientStyleFieldset">
+                  <h3>Gradient Style: </h3>
+                  <fieldset id="gradientFieldset">
+                    <label for="noGradient">No Gradient</label>
+                    <input type="radio" name="gradient" id="noGradient" value="noGradient" checked><br>
+                    <label for="linearGradient">Linear Gradient</label>
+                    <input type="radio" name="gradient" id="linearGradient" value="linearGradient"><br>
+                    <label for="radialGradient">Radial Gradient</label>
+                    <input type="radio" name="gradient" id="radialGradient" value="radialGradient"><br>
+                    <label for="pattern">Pattern</label>
+                    <input type="radio" name="gradient" id="pattern" value="pattern"><br>
+                  </fieldset>
+                  
+                  <fieldset id="patternFieldset"> 
+                    <form id="formSubmit" action="fileupload" method="post" enctype="multipart/form-data" class="invisible">
+                      <label for="filetoupload" id="filetouploadLabel">Select a file:</label><br>
+                      <input id="filetoupload" type="file" name="filetoupload" accept=".jpg, .png, .jpeg, .gif, .bmp"><br>
+                      <input id="fileSubmit" type="submit">
+                    </form>
+                  
+                    <label for="patternOffsetBoolean">Offset Relative to Mouse</label>
+                    <input type="checkbox" id="patternOffsetBoolean" checked>
+                    <label for="patternOffsetX">OffsetX</label>
+                    <input type="text" id="patternOffsetX" value="0" width="40px">
+                    <label for="patternOffsetY">OffsetY</label>
+                    <input type="text" id="patternOffsetY"  value="0" width="80px">
+
+                    <label for="repeatPattern" name="patternStyleLabel">Repeat</label>
+                    <input type="radio" name="patternStyle" id="repeatPattern" value="repeat" checked><br>
+                    <label for="repeatXPattern" name="patternStyleLabel">Repeat-X</label>
+                    <input type="radio" name="patternStyle" id="repeatXPattern" value="repeat-x"><br>
+                    <label for="repeatYPattern" name="patternStyleLabel">Repeat-Y</label>
+                    <input type="radio" name="patternStyle" id="repeatYPattern" value="repeat-y"><br>
+                    <label for="noRepeatPattern" name="patternStyleLabel">No Repeat</label>
+                    <input type="radio" name="patternStyle" id="noRepeatPattern" value="no-repeat"><br><br>
+
+                    <select id="picAlter0">
+                      <option value="invertColors">Invert</option>
+                      <option value="brightenDarken">Change Brightness</option>
+                      <option value="blendTo">Blend To</option>
+                      <option value="changeToColor">Change to Color</option>
+                    </select>
+
+                    <div id="brightenDarken">
+                      <label for="redBD" id="redBDLabel" style="color: red">Red</label>
+                      <input type="range" name="colorBD" id="redBD" min="-256" max="255">
+                      <nobr id="bDDisplay0">0</nobr><br>
+
+                      <label for="greenBD" id="greenBDLabel" style="color: green">Green</label>
+                      <input type="range" name="colorBD" id="greenBD" min="-256" max="255">
+                      <nobr id="bDDisplay1">0</nobr><br>
+
+                      <label for="blueBD" id="blueBDLabel" style="color: blue">Blue</label>
+                      <input type="range" name="colorBD" id="blueBD" min="-256" max="255">
+                      <nobr id="bDDisplay2">0</nobr><br>
+                    </div>
+
+                    <div id="blendToMenu">
+                      <label for="blendRange" id="blendRangeLabel">Blend Range</label>
+                      <input type="range" name="colorBD" id="blendRange" min="0" max="255">
+                      <nobr id="bDDisplay3">0</nobr><br>
+                    </div>
+
+                    <div id="changeToColorMenu">
+                      Turn the color
+                      <input id="fromColor" name="otherColorInputs">
+                      to the color
+                      <input id="toColor" name="otherColorInputs">
+                      within a range of
+                      <input id="fromColorRange"><br>
+                    </div>
+
+                    <button id="picAlter0_Button">Apply</button>
+                    <button id="imageReset">Reset Image</button><br><br>
+                  </fieldset>
+                  
+                  <fieldset id="gradientControlFieldset">
+                    <div id="gradientControlTitle">Gradient Control (in percentages)</div><br>
+                    <label for="gradientX" id="gradientXLabel">OffsetX:</label>
+                    <input type="text" id="gradientX" value="0"><br>
+                    <label for="gradientY" id="gradientYLabel">OffsetY:</label>
+                    <input type="text" id="gradientY" value="0"><br>
+                    <label for="gradientRadius" id="gradientRadiusLabel">gradRadius:</label>
+                    <input type="text" id="gradientRadius" value="10"><br>
+                    <label for="gradientX2" id="gradientX2Label">OffsetX2:</label>
+                    <input type="text" id="gradientX2" value="0"><br>
+                    <label for="gradientY2" id="gradientY2Label">OffsetY2:</label>
+                    <input type="text" id="gradientY2" value="0"><br>
+                    <label for="gradientRadius2" id="gradientRadius2Label">gradRadius2:</label>
+                    <input type="text" id="gradientRadius2" value="90"><br>
+                  </fieldset>
+
+                  <fieldset id="gradientDivisions">
+                    <label for="gradientAngle" id="gradientAngleLabel">Linear Gradient Angle: </label>
+                    <input type="text" id="gradientAngle" value="0">
+
+                    <h3>Gradient Divisions (values between 0-1) </h3>
+                    <label for="gradientDiv0" id="colorDivLabel0">divison0 (start of color0):  </label>
+                    <input name="colorDivisions" type="text" id="gradientDiv0" value="0">
+                    <label for="gradientDiv1" id="colorDivLabel1">division1 (color0 & color1):  </label>
+                    <input name="colorDivisions" type="text" id="gradientDiv1" value=".2">
+                    <label for="gradientDiv2" id="colorDivLabel2">division2 (color1 & color2): </label>
+                    <input name="colorDivisions" type="text" id="gradientDiv2" value=".4">
+                    <label for="gradientDiv3" id="colorDivLabel3">division3 (color2 & color3): </label>
+                    <input name="colorDivisions" type="text" id="gradientDiv3" value="1">
+                  </fieldset>
+
+                </div>  
+              </div>    
+            </div><br>
+          </div>
+
+          <div>
+            <p>Hey, I'm the other side!</p>
+          </div>
+        </div>
+
+        <p value="fries" id="doesDivHaveFries">Does Div Have Fries?</p>
+          <fieldset id="controllersFieldset">
+            <button id="button_0" class="canvasController">Something</button>
+            <button id="button_1" class="canvasController">Draw Line</button>
+            <button id="button_2" class="canvasController">Draw Quadratic Curve</button>
+            <button id="button_3" class="canvasController">Draw Bezier Curve</button>
+            <button id="button_4" class="canvasController">Draw Arc</button><br>
+
+            <button id="button_5" class="canvasController">Draw Circle</button>
+            <button id="button_6" class="canvasController">Draw Rectangle</button>
+            <button id="button_7" class="canvasController">Erasing Rect</button>
+            <button id="button_8" class="canvasController">Undo Last</button>
+            <button id="button_9" class="canvasController">Clear Canvas</button><br>
+
+            <button id="button_10" class="canvasController">Copy</button>
+            <button id="button_11" class="canvasController">Paste</button>
+            <button id="button_12" class="canvasController">Select</button>
+            <button id="button_13" class="canvasController">Use Pen</button>
+            <button id="button_14" class="canvasController">Use Stamp</button><br>
+
+            <button id="button_15" class="canvasController">Write Text</button>
+            <button id="button_16" class="canvasController">Grid Block</button>
+            <button id="button_17" class="canvasController">New Undo</button>
+            <button id="button_18" class="canvasController">New Redo</button>
+            <button id="button_19" class="canvasController">Mark SavePoint</button><br>
+          </fieldset>
+        </div>
+      </div>
+
+    <canvas id="secretTestCanvas" width="1" height="1"  alt="your browser does not support the HTML5 canvas tag.  Seriously." >       
+    </canvas>
+    <script src="main.js"></script>
+  </body>
+</html>
